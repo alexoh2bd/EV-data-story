@@ -64,7 +64,6 @@ if __name__ == "__main__":
     df["Year announced"] = pd.to_numeric(df["Year announced"]).astype("Int64")
 
     policy_counts = df.groupby(["Year announced", "Policy type"]).size().unstack(fill_value=0)
-
     # Plot stacked bar chart
     policy_counts.plot(
         kind="bar",
@@ -72,13 +71,17 @@ if __name__ == "__main__":
         figsize=(10,8),
         cmap="Accent"
     )
+
+    # The above lines 66 and 68-73 (visualization and groupby manipulation) were generated via Gemini 2.0 Flash via Google Search on September 29, 2025
+
     plt.title("EV Policies by Year and Policy Type")
     plt.xlabel("Year Announced")
     plt.ylabel("Number of Policies")
     plt.legend(title="Policy Type")
+
     '''
     '''
-    # Policy type by Country
+    # Policy type and Country by Year
     # convert df year to int
     df["Year announced"] = pd.to_numeric(df["Year announced"]).astype("Int64")
     
@@ -86,6 +89,7 @@ if __name__ == "__main__":
     topcountries = df["Country/Economy"].value_counts().head(6).index
     topdf=df[df["Country/Economy"].isin(topcountries)]
     policy_counts = topdf.groupby(["Year announced", "Country/Economy"]).size().unstack(fill_value=0)
+    # The above lines 89-91 were  generated via Gemini 2.0 Flash via Google Search on September 29, 2025
 
     # Plot stacked bar chart
     policy_counts.plot(
@@ -101,6 +105,7 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
     '''
+    
 
     df["Year announced"] = pd.to_numeric(df["Year announced"]).astype("Int64")
 
@@ -108,10 +113,7 @@ if __name__ == "__main__":
     group = df.groupby(["Year announced"]).sum()#.unstack(fill_value=0)
     cats = list(unique_categories)
     print(group[cats])
-
-    # for cat in unique_categories:
-
-    # # Plot stacked bar chart
+    # Plot stacked bar chart
     bottom=None
     # print()
     for cat in cats:
